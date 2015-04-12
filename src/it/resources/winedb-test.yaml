@@ -2,8 +2,8 @@ database:
   driverClass: org.postgresql.Driver
   # the username
   user: postgres
-  password: mysecretpassword
-  url: jdbc:postgresql://winedb-postgres/postgres
+  password: pwd
+  url: jdbc:postgresql://localhost/postgres
   properties:
     charSet: UTF-8
 
@@ -14,10 +14,10 @@ database:
   validationQuery: "SELECT 1"
 
   # the minimum number of connections to keep open
-  minSize: 8
+  minSize: 1
 
   # the maximum number of connections to keep open
-  maxSize: 32
+  maxSize: 10
 
   # whether or not idle connections should be validated
   checkConnectionWhileIdle: false
@@ -27,3 +27,16 @@ database:
 
   # the minimum amount of time an connection must sit idle in the pool before it is eligible for eviction
   minIdleTime: 1 minute
+
+server:
+  applicationConnectors:
+    - type: http
+      port: 8088
+
+logging:
+  level: INFO
+  appenders:
+    - type: console
+      threshold: INFO
+      timeZone: UTC
+      target: stdout

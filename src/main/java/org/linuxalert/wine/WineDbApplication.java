@@ -6,6 +6,10 @@ import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import org.linuxalert.wine.dao.GrapeDao;
+import org.linuxalert.wine.dao.WineDao;
+import org.linuxalert.wine.resource.GrapeResource;
+import org.linuxalert.wine.resource.WineResource;
 import org.skife.jdbi.v2.DBI;
 
 
@@ -17,7 +21,7 @@ public class WineDbApplication extends Application<WineDbConfiguration> {
 
   @Override
   public String getName() {
-    return "wine";
+    return "Wine";
   }
 
   @Override
@@ -37,9 +41,18 @@ public class WineDbApplication extends Application<WineDbConfiguration> {
     final DBIFactory factory = new DBIFactory();
     final DBI dbContext =
         factory.build(environment, configuration.getDataSourceFactory(), "postgresql");
-    final WineDao dao = dbContext.onDemand(WineDao.class);
-    environment.jersey().register(new WineResource(dao));
+    registerGrape(environment, dbContext);
+    registerWine(environment, dbContext);
   }
 
+  private void registerWine(Environment environment, DBI dbContext) {
+    final WineDao wineDao = dbContext.onDemand(WineDao.class);
+    environment.jersey().register(new WineResource(wineDao));
+  }
+
+  private void registerGrape(Environment environment, DBI dbContext) {
+    final GrapeDao grapeDao = dbContext.onDemand(GrapeDao.class);
+    environment.jersey().register(new GrapeResource(grapeDao));
+  }
 
 }
