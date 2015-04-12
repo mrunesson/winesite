@@ -12,6 +12,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
+import java.util.Collection;
 
 
 @Path("/grape")
@@ -22,6 +23,12 @@ public class GrapeResource {
 
   public GrapeResource(GrapeDao grapeDao) {
     this.grapeDao = grapeDao;
+  }
+
+  @GET
+  @Timed
+  public Collection<Grape> getGrape() {
+    return grapeDao.getAllGrapes();
   }
 
   @GET

@@ -19,6 +19,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * A JUnit rule for starting and stopping your application and postgres database at
+ * the start and end of a test class.
+ *
+ * @param <C> the configuration type
+ */
 public class DropwizardDockerResource<C extends Configuration> extends DropwizardAppRule {
 
   private final String POSTGRES_PORT = "5432";

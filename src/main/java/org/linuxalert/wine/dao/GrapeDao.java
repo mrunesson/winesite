@@ -6,6 +6,8 @@ import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 
+import java.util.Collection;
+
 
 public interface GrapeDao {
 
@@ -15,4 +17,8 @@ public interface GrapeDao {
   @SqlQuery("select * from grape where name = :name")
   @Mapper(GrapeMapper.class)
   Grape findGrapeByName(@Bind("name") String name);
+
+  @SqlQuery("select * from grape")
+  @Mapper(GrapeMapper.class)
+  Collection<Grape> getAllGrapes();
 }
