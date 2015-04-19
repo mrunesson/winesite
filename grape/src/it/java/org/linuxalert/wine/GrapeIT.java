@@ -29,7 +29,7 @@ public class GrapeIT {
 
   @ClassRule
   public static DropwizardDockerResource RULE =
-      new DropwizardDockerResource(WineDbApplication.class, CONFIG_PATH);
+      new DropwizardDockerResource(GrapeApplication.class, CONFIG_PATH);
 
 
   @Before

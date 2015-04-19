@@ -13,29 +13,29 @@ import org.linuxalert.wine.resource.WineResource;
 import org.skife.jdbi.v2.DBI;
 
 
-public class WineDbApplication extends Application<WineDbConfiguration> {
+public class GrapeApplication extends Application<GrapeConfiguration> {
 
   public static void main(String[] args) throws Exception {
-    new WineDbApplication().run(args);
+    new GrapeApplication().run(args);
   }
 
   @Override
   public String getName() {
-    return "Wine";
+    return "Grape";
   }
 
   @Override
-  public void initialize(Bootstrap<WineDbConfiguration> bootstrap) {
-    bootstrap.addBundle(new MigrationsBundle<WineDbConfiguration>() {
+  public void initialize(Bootstrap<GrapeConfiguration> bootstrap) {
+    bootstrap.addBundle(new MigrationsBundle<GrapeConfiguration>() {
       @Override
-      public DataSourceFactory getDataSourceFactory(WineDbConfiguration configuration) {
+      public DataSourceFactory getDataSourceFactory(GrapeConfiguration configuration) {
         return configuration.getDataSourceFactory();
       }
     });
   }
 
   @Override
-  public void run(WineDbConfiguration configuration, Environment environment)
+  public void run(GrapeConfiguration configuration, Environment environment)
     throws ClassNotFoundException {
 
     final DBIFactory factory = new DBIFactory();

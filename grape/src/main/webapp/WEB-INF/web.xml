@@ -7,12 +7,12 @@
         version="3.1">
 
     <servlet>
-        <servlet-name>WineDB</servlet-name>
-        <servlet-class>org.linuxalert.wine.WineDB</servlet-class>
+        <servlet-name>grape</servlet-name>
+        <servlet-class>org.linuxalert.wine.grape</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>WineDB</servlet-name>
-        <url-pattern>/winedb/*</url-pattern>
+        <servlet-name>grape</servlet-name>
+        <url-pattern>/grape/*</url-pattern>
     </servlet-mapping>
 
 </web-app>

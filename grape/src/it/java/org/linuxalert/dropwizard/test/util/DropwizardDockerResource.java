@@ -57,7 +57,7 @@ public class DropwizardDockerResource<C extends Configuration> extends Dropwizar
       hostPorts.add(PortBinding.of("0.0.0.0", POSTGRES_PORT));
       portBindings.put(POSTGRES_PORT, hostPorts);
       docker.startContainer(container_id, HostConfig.builder().portBindings(portBindings).build());
-      Thread.sleep(5000);
+      Thread.sleep(10000);
     } catch (Exception e) {
       e.printStackTrace();
       System.err.print(e.getMessage());

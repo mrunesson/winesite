@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.Valid;
 
 
-public class WineDbConfiguration extends Configuration {
+public class GrapeConfiguration extends Configuration {
 
   @Valid
   @NotNull
