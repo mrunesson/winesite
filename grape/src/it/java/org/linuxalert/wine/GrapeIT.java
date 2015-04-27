@@ -9,7 +9,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
-import org.linuxalert.dropwizard.test.util.DropwizardDockerResource;
+import org.linuxalert.wine.lib.dropwizard.test.util.DropwizardDockerResource;
 import org.linuxalert.wine.model.Grape;
 
 import javax.ws.rs.client.Client;
@@ -30,7 +30,6 @@ public class GrapeIT {
   @ClassRule
   public static DropwizardDockerResource RULE =
       new DropwizardDockerResource(GrapeApplication.class, CONFIG_PATH);
-
 
   @Before
   public void setup() throws Exception {

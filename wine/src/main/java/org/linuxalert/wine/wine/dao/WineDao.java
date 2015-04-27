@@ -1,4 +1,4 @@
-package org.linuxalert.wine.dao;
+package org.linuxalert.wine.wine.dao;
 
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;

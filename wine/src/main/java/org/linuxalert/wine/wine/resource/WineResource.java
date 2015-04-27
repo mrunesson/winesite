@@ -1,16 +1,16 @@
-package org.linuxalert.wine.resource;
+package org.linuxalert.wine.wine.resource;
 
 import com.codahale.metrics.annotation.Timed;
-import org.linuxalert.wine.dao.WineDao;
-import org.linuxalert.wine.model.Wine;
+import org.linuxalert.wine.wine.dao.WineDao;
+import org.linuxalert.wine.wine.model.Wine;
 
 import javax.validation.Valid;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 
 @Path("/wine")

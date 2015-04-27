@@ -1,4 +1,4 @@
-package org.linuxalert.dropwizard.test.util;
+package org.linuxalert.wine.lib.dropwizard.test.util;
 
 import com.spotify.docker.client.DefaultDockerClient;
 import com.spotify.docker.client.DockerClient;
@@ -42,7 +42,7 @@ public class DropwizardDockerResource<C extends Configuration> extends Dropwizar
     return super.apply(base, description);
   }
 
-  @Override protected void before() {
+  @Override public void before() {
     try {
       docker = DefaultDockerClient.fromEnv().build();
       docker.pull("postgres");
@@ -65,7 +65,7 @@ public class DropwizardDockerResource<C extends Configuration> extends Dropwizar
     super.before();
   }
 
-  @Override protected void after() {
+  @Override public void after() {
     super.after();
     try {
       docker.killContainer(container_id);

@@ -1,4 +1,4 @@
-package org.linuxalert.wine.model;
+package org.linuxalert.wine.wine.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
