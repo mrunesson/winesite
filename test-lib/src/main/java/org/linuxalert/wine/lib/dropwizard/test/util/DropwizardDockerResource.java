@@ -13,11 +13,12 @@ import io.dropwizard.testing.junit.DropwizardAppRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.Nullable;
+
 
 /**
  * A JUnit rule for starting and stopping your application and postgres database at
@@ -27,10 +28,10 @@ import java.util.Map;
  */
 public class DropwizardDockerResource<C extends Configuration> extends DropwizardAppRule {
 
-  private final String POSTGRES_PORT = "5432";
+  private static final String POSTGRES_PORT = "5432";
 
   public DockerClient docker;
-  private String container_id;
+  private String containerId;
 
   public DropwizardDockerResource(Class<? extends Application<C>> applicationClass,
       @Nullable String configPath,
@@ -51,12 +52,12 @@ public class DropwizardDockerResource<C extends Configuration> extends Dropwizar
               .exposedPorts(POSTGRES_PORT).cmd("postgres")
               .build();
       ContainerCreation creation = docker.createContainer(config);
-      container_id = creation.id();
+      containerId = creation.id();
       final Map<String, List<PortBinding>> portBindings = new HashMap<>();
       List<PortBinding> hostPorts = new ArrayList<>();
       hostPorts.add(PortBinding.of("0.0.0.0", POSTGRES_PORT));
       portBindings.put(POSTGRES_PORT, hostPorts);
-      docker.startContainer(container_id, HostConfig.builder().portBindings(portBindings).build());
+      docker.startContainer(containerId, HostConfig.builder().portBindings(portBindings).build());
       Thread.sleep(10000);
     } catch (Exception e) {
       e.printStackTrace();
@@ -68,11 +69,11 @@ public class DropwizardDockerResource<C extends Configuration> extends Dropwizar
   @Override public void after() {
     super.after();
     try {
-      docker.killContainer(container_id);
-      docker.removeContainer(container_id);
+      docker.killContainer(containerId);
+      docker.removeContainer(containerId);
     } catch (Exception e) {
       e.printStackTrace();
-      System.err.print("Failed to kill docker container " + container_id + ".");
+      System.err.print("Failed to kill docker container " + containerId + ".");
       System.err.print(e.getMessage());
     }
   }
