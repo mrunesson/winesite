@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import org.linuxalert.wine.dao.GrapeDao;
 import org.linuxalert.wine.model.Grape;
 
+import java.util.Collection;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
@@ -12,7 +13,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
-import java.util.Collection;
 
 
 @Path("/grape")
