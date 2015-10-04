@@ -1,0 +1,12 @@
+winedb:
+  build: wine/target/docker
+  ports:
+    - 8080:8080
+    - 8081:8081
+  links:
+    - postgres:winedb-postgres
+
+postgres:
+  image: postgres
+
+

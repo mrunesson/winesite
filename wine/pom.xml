@@ -45,7 +45,7 @@
                     implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                 <transformer
                     implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  <mainClass>org.linuxalert.org.linuxalert.wine.wine.WineApplication</mainClass>
+                  <mainClass>org.linuxalert.wine.wine.WineApplication</mainClass>
                 </transformer>
               </transformers>
             </configuration>
