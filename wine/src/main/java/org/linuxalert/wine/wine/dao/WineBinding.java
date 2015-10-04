@@ -4,10 +4,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.linuxalert.wine.wine.model.Wine;
 import org.postgresql.util.PGobject;
-import org.skife.jdbi.v2.SQLStatement;
 import org.skife.jdbi.v2.sqlobject.Binder;
 import org.skife.jdbi.v2.sqlobject.BinderFactory;
 import org.skife.jdbi.v2.sqlobject.BindingAnnotation;
+import org.skife.jdbi.v2.SQLStatement;
 
 import java.lang.annotation.Annotation;
 import java.lang.annotation.ElementType;

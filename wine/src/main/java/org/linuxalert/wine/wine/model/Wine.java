@@ -33,6 +33,12 @@ public class Wine {
 
   public Wine() {}
 
+  /**
+   *
+   * @param id Wine identifier as an URI.
+   * @param name Name of the Wine.
+   * @param grapes Collection of grapes in the wine.
+   */
   public Wine(String id, String name, Collection<String> grapes) {
     this.id = id;
     this.name = name;
@@ -51,17 +57,17 @@ public class Wine {
     return grapes;
   }
 
-  @Override public boolean equals(Object o) {
-    if (this == o) {
+  @Override public boolean equals(Object obejct) {
+    if (this == obejct) {
       return true;
     }
-    if (o == null || getClass() != o.getClass()) {
+    if (obejct == null || getClass() != obejct.getClass()) {
       return false;
     }
-    Wine wine = (Wine) o;
-    return Objects.equals(id, wine.id) &&
-        Objects.equals(name, wine.name) &&
-        grapes.containsAll(wine.grapes);
+    Wine wine = (Wine) obejct;
+    return Objects.equals(id, wine.id)
+        && Objects.equals(name, wine.name)
+        && grapes.containsAll(wine.grapes);
   }
 
   @Override public int hashCode() {
