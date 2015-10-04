@@ -72,6 +72,11 @@
               <directory>${project.basedir}/src/main/resources</directory>
               <include>winedb.yaml</include>
             </resource>
+            <resource>
+              <targetPath>/</targetPath>
+              <directory>${project.basedir}/src/main/bash</directory>
+              <include>run.sh</include>
+            </resource>
           </resources>
         </configuration>
         <executions>
