@@ -5,6 +5,7 @@ import org.linuxalert.wine.wine.dao.WineDao;
 import org.linuxalert.wine.wine.model.Wine;
 
 import java.sql.SQLException;
+import java.util.Collection;
 import javax.validation.Valid;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.GET;
@@ -22,6 +23,13 @@ public class WineResource {
   public WineResource(WineDao wineDao) {
     this.wineDao = wineDao;
   }
+
+  @GET
+  @Timed
+  public Collection<Wine> getWines() {
+    return wineDao.getAll();
+  }
+
 
   @GET
   @Path("/{id}")
