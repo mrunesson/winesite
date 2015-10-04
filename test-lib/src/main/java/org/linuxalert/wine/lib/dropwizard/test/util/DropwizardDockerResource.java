@@ -30,7 +30,7 @@ public class DropwizardDockerResource<C extends Configuration> extends Dropwizar
 
   private static final String POSTGRES_PORT = "5432";
 
-  public DockerClient docker;
+  public DefaultDockerClient docker;
   private String containerId;
 
   public DropwizardDockerResource(Class<? extends Application<C>> applicationClass,
@@ -46,23 +46,26 @@ public class DropwizardDockerResource<C extends Configuration> extends Dropwizar
   @Override public void before() {
     try {
       docker = DefaultDockerClient.fromEnv().build();
-      docker.pull("postgres");
-      ContainerConfig config =
-          ContainerConfig.builder().image("postgres").env("POSTGRES_PASSWORD=pwd")
-              .exposedPorts(POSTGRES_PORT).cmd("postgres")
-              .build();
-      ContainerCreation creation = docker.createContainer(config);
-      containerId = creation.id();
+      docker.pull("postgres:latest");
       final Map<String, List<PortBinding>> portBindings = new HashMap<>();
       List<PortBinding> hostPorts = new ArrayList<>();
       hostPorts.add(PortBinding.of("0.0.0.0", POSTGRES_PORT));
       portBindings.put(POSTGRES_PORT, hostPorts);
-      docker.startContainer(containerId, HostConfig.builder().portBindings(portBindings).build());
-      Thread.sleep(10000);
+      ContainerConfig config =
+          ContainerConfig.builder().image("postgres").env("POSTGRES_PASSWORD=pwd")
+              .hostConfig(HostConfig.builder().portBindings( portBindings).build())
+              .exposedPorts(POSTGRES_PORT).cmd("postgres")
+              .build();
+      ContainerCreation creation = docker.createContainer(config);
+      containerId = creation.id();
+
+      docker.startContainer(containerId);
+      Thread.sleep(10000); // TODO: Might be a cleaner way to do this.
     } catch (Exception e) {
       e.printStackTrace();
       System.err.print(e.getMessage());
     }
+
     super.before();
   }
 

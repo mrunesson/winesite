@@ -1,7 +1,6 @@
 package org.linuxalert.wine.wine.dao;
 
 import org.linuxalert.wine.wine.model.Wine;
-import org.postgresql.util.PGobject;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;

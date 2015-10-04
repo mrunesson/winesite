@@ -3,13 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
+    <groupId>org.linuxalert.wine</groupId>
     <artifactId>master</artifactId>
-    <groupId>wine.linuxalert.org</groupId>
     <version>1.0-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>test-lib</artifactId>
+  <packaging>jar</packaging>
 
   <dependencies>
     <dependency>
@@ -25,7 +26,7 @@
     <dependency>
       <groupId>com.spotify</groupId>
       <artifactId>docker-client</artifactId>
-      <version>2.7.20</version>
+      <version>3.1.5</version>
     </dependency>
   </dependencies>
 

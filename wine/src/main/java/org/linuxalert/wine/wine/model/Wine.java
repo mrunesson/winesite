@@ -12,7 +12,7 @@ public class Wine {
   @Length(min = 1, max = 300) private String id;
 
   private String name;
-  private URL wineURL;
+  private URL wineUrl;
 
   private Collection<String> grapes;
 

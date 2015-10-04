@@ -1,5 +1,4 @@
-* Write fig file
+* Write docker-compose file
 * Get logs.
 * Backup of postgres
-* name jar without version number
 * resource linking grapes
