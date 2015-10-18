@@ -1,35 +1,49 @@
+The main purpose of this project is to play with new technologies. Technologies
+used are:
 
+* docker including docker-machine, docker-compose, and maven integration
+* dropwizard.io
+* micro services
+
+The long term idea is that it might turn out to be a wine database.
 
 
 Build and run
 =============
 
-You need to have docker set up. If you run on OS X or Windows make sure you have run:
+You need to have docker set up. If you run on OS X or Windows make sure you have
+docker-machine set up.
 
-    $(boot2docker shellinit)
+Build and run integration tests for winesite:
 
-You do also want to forward the ports from the virtual box to the host machine:
+    mvn clean verify
 
-    VBoxManage modifyvm "boot2docker-vm" --natpf1 "tcp-port5432,tcp,,5432,,5432";
-    VBoxManage modifyvm "boot2docker-vm" --natpf1 "tcp-port8080,tcp,,8080,,8080";
-    VBoxManage modifyvm "boot2docker-vm" --natpf1 "tcp-port8081,tcp,,8081,,8081";
+Build the docker environment use docker-compose:
+
+    docker-compose build
+
+To start:
+
+    docker-compose start
 
 
-Build a docker image for winedb with maven:
+Services
+========
 
-    mvn clean package
+All are not yet created.
 
-Start a postgres database for winedb:
+* wine - Representations of all wines
+* grape - Handle all grapes
+* cellar - Handle different cellars (support for sub-cellars)
+* user - Users
+* tasting - Handle tastings
 
-    docker run --name winedb-postgres -e POSTGRES_PASSWORD=mysecretpassword postgres
 
-Start winedb:
+Resources
+=========
 
-    docker run --link winedb-postgres:winedb-postgres -p 8080:8080 -p 8081:8081 winedb
-
-You will be able to access port 8080 and 8081.
-
-You have to create needed tables in postgres. Find out container id for your winedb container
-with ``docker ps`` and then run:
-
-    docker exec containerid java -jar winedb-1.0-SNAPSHOT.jar db migrate winedb.yml
+* /wine/winery/wine/vintage
+* /grape/grapename
+* /user/username
+* /cellar/cellarid
+* /tasting/tasteid/...
